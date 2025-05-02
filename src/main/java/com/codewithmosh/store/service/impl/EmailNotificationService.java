@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailNotificationService implements NotificationService {
 
-    @Value("${host}")
+    @Value("${stripe.apiUrl}")
     private String host;
 
-    @Value("${port}")
+    @Value("${stripe.port}")
     private Integer port;
     @Override
     public void send(String message, String recipientEmail) {
