@@ -31,5 +31,5 @@ public class Profiles {
 
     @OneToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "ID", referencedColumnName = "ID")
-    private User userEntity;
+    private User user;
 }

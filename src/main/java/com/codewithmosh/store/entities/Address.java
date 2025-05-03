@@ -9,6 +9,7 @@ import lombok.*;
 @Table(name = "addresses")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Entity
 public class Address {
     @Id
@@ -29,5 +30,6 @@ public class Address {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID", insertable=false, updatable=false)
+    @ToString.Exclude
     private User user;
 }
