@@ -3,12 +3,13 @@ package com.codewithmosh.store.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
-@Builder
 @Table(name = "tags")
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Tag {
 
@@ -18,4 +19,20 @@ public class Tag {
 
     @Column(nullable = false, name = "name")
     private String name;
+
+    @ManyToMany(mappedBy = "tags")
+    @ToString.Exclude
+    private Set<User> users = new HashSet<>();
+
+    public Tag(String name) {
+        this.name = name;
+    }
+
+    public void addUser(User user) {
+        users.add(user);
+    }
+
+    public void removeUser(User user) {
+        users.remove(user);
+    }
 }
