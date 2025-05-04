@@ -11,8 +11,9 @@ import java.sql.Timestamp;
 @Table(name = "profiles")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Entity
-public class Profiles {
+public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,6 +31,8 @@ public class Profiles {
     private Integer loyaltyPoints;
 
     @OneToOne(cascade = CascadeType.ALL )
-    @JoinColumn(name = "ID", referencedColumnName = "ID")
+    @JoinColumn(name = "id")
+    @ToString.Exclude
+    @MapsId
     private User user;
 }
