@@ -33,8 +33,4 @@ public class Product {
     @JoinColumn(name = "category_id", referencedColumnName = "id", insertable=false, updatable=false)
     @ToString.Exclude
     private Category category;
-
-    @ManyToMany(mappedBy = "wishlist")
-    @ToString.Exclude
-    private Set<User> users = new HashSet<>();
 }
