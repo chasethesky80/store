@@ -21,4 +21,9 @@ public class Product {
 
     @Column(nullable = false, name = "price")
     private String price;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", referencedColumnName = "id", insertable=false, updatable=false)
+    @ToString.Exclude
+    private Category category;
 }

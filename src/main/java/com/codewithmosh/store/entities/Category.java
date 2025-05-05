@@ -3,6 +3,9 @@ package com.codewithmosh.store.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -19,4 +22,8 @@ public class Category {
 
     @Column(nullable = false, name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "product")
+    @Builder.Default
+    private List<Product> products = new ArrayList<>();
 }
