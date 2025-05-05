@@ -12,6 +12,6 @@ create table products
     name  varchar(255) not null,
     price decimal(10, 2),
     category_id tinyint,
-    CONSTRAINT categories_id_fk FOREIGN KEY (category_id) REFERENCES categories(id)
+    CONSTRAINT categories_id_fk FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT
 );
 
