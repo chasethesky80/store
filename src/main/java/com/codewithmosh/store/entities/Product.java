@@ -34,7 +34,7 @@ public class Product {
     @ToString.Exclude
     private Category category;
 
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany(mappedBy = "wishlist")
     @ToString.Exclude
     private Set<User> users = new HashSet<>();
 }

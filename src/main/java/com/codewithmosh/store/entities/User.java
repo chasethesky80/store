@@ -48,7 +48,7 @@ public class User {
             joinColumns = { @JoinColumn(name = "user_id") },
             inverseJoinColumns = { @JoinColumn(name = "product_id") })
     @Builder.Default
-    private Set<Product> products = new HashSet<>();
+    private Set<Product> wishlist = new HashSet<>();
 
     @OneToOne(mappedBy = "user")
     private Profile profile;
