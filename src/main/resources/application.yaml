@@ -5,11 +5,7 @@ spring:
     url: jdbc:mysql://localhost:3306/store?createDatabaseIfNotExist=true
     username: root
     password: Luckysesh@1
+  jpa:
+    show-sql: true
 server:
   port: 8081
-stripe:
-  apiUrl: https://api.stripe.com
-  enabled: true
-  supported-currencies: USD,EUR,GBP
-  host: http://email.com
-  port: 3031
