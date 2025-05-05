@@ -3,6 +3,9 @@ package com.codewithmosh.store.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @Builder
@@ -23,8 +26,15 @@ public class Product {
     @Column(nullable = false, name = "price")
     private String price;
 
+    @Column(nullable = false, name = "description")
+    private String description;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", referencedColumnName = "id", insertable=false, updatable=false)
     @ToString.Exclude
     private Category category;
+
+    @ManyToMany(mappedBy = "products")
+    @ToString.Exclude
+    private Set<User> users = new HashSet<>();
 }
