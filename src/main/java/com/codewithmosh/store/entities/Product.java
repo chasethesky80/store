@@ -3,6 +3,7 @@ package com.codewithmosh.store.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,12 +25,12 @@ public class Product {
     private String name;
 
     @Column(nullable = false, name = "price")
-    private String price;
+    private BigDecimal price;
 
     @Column(nullable = false, name = "description")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", referencedColumnName = "id", insertable=false, updatable=false)
     @ToString.Exclude
     private Category category;
