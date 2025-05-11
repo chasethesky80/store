@@ -1,9 +1,7 @@
 package com.codewithmosh.store.repository;
 
-import com.codewithmosh.store.entities.Product;
 import com.codewithmosh.store.entities.User;
 import org.springframework.data.repository.CrudRepository;
 
-public interface ProductRepository extends CrudRepository<Product, Long> {
-
+public interface UserRepository extends CrudRepository<User, Long> {
 }

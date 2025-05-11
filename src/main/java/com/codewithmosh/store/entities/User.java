@@ -53,14 +53,7 @@ public class User {
     @OneToOne(mappedBy = "user")
     private Profile profile;
 
-    public void addAddress(Address address) {
-        addresses.add(address);
-        address.setUser(this);
-    }
-
-    public void addTag(String tagName) {
-        var tag = new Tag(tagName);
-        tags.add(tag);
-        tag.getUsers().add(this);
+    public void addToWishlist(Product product) {
+        wishlist.add(product);
     }
 }
