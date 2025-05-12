@@ -1,6 +1,6 @@
 package com.codewithmosh.store.controller;
 
-import com.codewithmosh.store.dtos.ProductDTO;
+import com.codewithmosh.store.dtos.ProductDto;
 import com.codewithmosh.store.service.ProductService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class ProductController {
 
     @RequestMapping(value = "/products",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ProductDTO>> getProducts(@RequestParam(required = false) String categoryId) {
+    public ResponseEntity<List<ProductDto>> getProducts(@RequestParam(required = false) String categoryId) {
         var productDtos = productService.findProducts(categoryId);
         if (productDtos.isEmpty()) {
             return ResponseEntity.noContent().build();
