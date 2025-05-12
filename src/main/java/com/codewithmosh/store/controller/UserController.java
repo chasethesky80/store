@@ -8,6 +8,7 @@ import com.codewithmosh.store.mappers.UserMapper;
 import com.codewithmosh.store.repository.UserRepository;
 import com.codewithmosh.store.service.UserService;
 import io.micrometer.common.util.StringUtils;
+import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +48,7 @@ public class UserController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserResponse> createUser(@RequestBody AddUserRequest userRequest) {
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody AddUserRequest userRequest) {
         final User user = userMapper.toUser(userRequest);
         final User savedUser = userRepository.save(user);
         final UserResponse userResponse = userMapper.toUserDto(savedUser);
@@ -57,7 +58,7 @@ public class UserController {
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserResponse> updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
+    public ResponseEntity<UserResponse> updateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest) {
         userRepository.findById(updateUserRequest.getId())
                 .orElseThrow(() -> new RuntimeException("User with id " + updateUserRequest.getId() + " not found"));
         final User user = userMapper.toUser(updateUserRequest);
