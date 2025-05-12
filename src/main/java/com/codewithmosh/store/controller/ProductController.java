@@ -1,11 +1,14 @@
 package com.codewithmosh.store.controller;
 
-import com.codewithmosh.store.entities.Product;
+import com.codewithmosh.store.dtos.ProductDTO;
 import com.codewithmosh.store.service.ProductService;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class ProductController {
@@ -18,7 +21,11 @@ public class ProductController {
 
     @RequestMapping(value = "/products",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<Product> getProducts(@RequestParam(required = false) String categoryId) {
-        return productService.findProducts(categoryId);
+    public ResponseEntity<List<ProductDTO>> getProducts(@RequestParam(required = false) String categoryId) {
+        var productDtos = productService.findProducts(categoryId);
+        if (productDtos.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(productDtos);
     }
 }
