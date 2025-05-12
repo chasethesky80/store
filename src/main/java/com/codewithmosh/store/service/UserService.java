@@ -36,4 +36,8 @@ public class UserService {
                 .map(userMapper::toUserDto)
                 .collect(Collectors.toList());
     }
+
+    public boolean doesEmailExist(final String email) {
+        return userRepository.existsByEmail(email);
+    }
 }

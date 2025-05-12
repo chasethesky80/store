@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -48,7 +49,11 @@ public class UserController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody AddUserRequest userRequest) {
+    public ResponseEntity<?> createUser(@Valid @RequestBody AddUserRequest userRequest) {
+        if (userRepository.existsByEmail(userRequest.getEmail())) {
+            return ResponseEntity.badRequest().body(Map.of("error",
+                    "email already exists"));
+        }
         final User user = userMapper.toUser(userRequest);
         final User savedUser = userRepository.save(user);
         final UserResponse userResponse = userMapper.toUserDto(savedUser);
